@@ -98,16 +98,16 @@ Returns an object of the most recent pianobar event with the following structure
 	}
 }
 ```
-`event` is the name of the most recent pianobar event
-`artist	` is the artist of the current song
-`title` is the title of the current song
-`album` is the album the current song is on
-`coverArt` is a url to the cover art on Pandora's servers
-`stationName` is the name of the currently playing station
-`songDuration` is the length of the current song in seconds
-`detailURL` is a url to details page for the song on the Pandora web site
-`stationCount` is the total number of user stations
-`stations` is an object with keys for each of the users stations. The key is the station number (index) and the value is the name of the station.
+* `event` is the name of the most recent pianobar event
+* `artist	` is the artist of the current song
+* `title` is the title of the current song
+* `album` is the album the current song is on
+* `coverArt` is a url to the cover art on Pandora's servers
+* `stationName` is the name of the currently playing station
+* `songDuration` is the length of the current song in seconds
+* `detailURL` is a url to details page for the song on the Pandora web site
+* `stationCount` is the total number of user stations
+* `stations` is an object with keys for each of the users stations. The key is the station number (index) and the value is the name of the station.
 
 The values for artist, title, album, and station names are escaped
 
