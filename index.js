@@ -76,7 +76,7 @@ exports.getStatus = function(){
 function writetoFiFo(command){
 	// This will echo the command into the fifo
 	// Pianobar is controled via a fifo, so this command is used for all controls
-	var commandBuffer = new Buffer(command);
+	var commandBuffer = new Buffer(command+"\n");
 
 	fs.open(fifoLocation, 'w', 0644, function(error, fd) {
 		if (error) {
@@ -87,7 +87,7 @@ function writetoFiFo(command){
 		return;
 		}
 
-		fs.write(fd, commandBuffer, 0, command.length, null, function(error, written, buffer) {
+		fs.write(fd, commandBuffer, 0, commandBuffer.length, null, function(error, written, buffer) {
 			if (fd) {
 				fs.close(fd);
 			}
