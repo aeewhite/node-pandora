@@ -62,6 +62,9 @@ exports.volumeUp = function(){
 exports.volumeDown = function(){
 	writetoFiFo('(');
 };
+exports.setStation = function(stationNumber){
+	writetoFiFo('s'+stationNumber);
+};
 
 
 exports.getStatus = function(){
