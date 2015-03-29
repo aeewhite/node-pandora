@@ -1,6 +1,6 @@
 {
   "name": "node-pandora",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "An interface to control pianobar in node",
   "main": "index.js",
   "keywords": [
