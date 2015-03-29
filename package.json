@@ -9,5 +9,6 @@
   ],
   "author": "Andrew White",
   "dependencies": {
+    "exec":"*"
   }
 }
