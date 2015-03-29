@@ -70,6 +70,12 @@ pandora.volumeDown();
 ```
 Raise pianobar volume
 
+###Change Stations
+```js
+pandora.setStation(stationIndex);
+```
+Change station to the station at stationIndex (refer to the list provided by `getStatus()`)
+
 ###Station Delete
 ```js
 pandora.deleteStation();
@@ -111,6 +117,16 @@ Returns an object of the most recent pianobar event with the following structure
 
 The values for artist, title, album, and station names are escaped
 
+##Events
+node-pandora provides an event emitter to listen to all events from pianobar. Events include `songstart`, `songfinish`, etc (full list can be found in [man pages for pianobar](http://manpages.ubuntu.com/manpages/maverick/man1/pianobar.1.html)). The status object provided by the event will be provided along with the event.
+
+####Example
+
+```js
+pandora.events.on('songstart',function(status){
+	//Handle Event Here
+})
+```
 
 ##Note
 
