@@ -1,11 +1,14 @@
 var child_process = require('child_process');
 var fs = require('fs');
 var net = require('net');
+var EventEmitter = require('events').EventEmitter;
 var server;
 
 var pianobarLocation = '/usr/local/bin/pianobar';
 var fifoLocation = process.env.HOME +'/.config/pianobar/ctl';
 var currentStatus;
+
+module.exports.events = new EventEmitter();
 
 exports.start = function(customLoc){
 	if(customLoc){
@@ -22,10 +25,8 @@ exports.start = function(customLoc){
 		stream.on('data',function(input){
 			// Handle the new stuff
 			currentStatus = parseStatus(input);
+			module.exports.events.emit(currentStatus.event, currentStatus);
 		});
-		// stream.on('end',function(){
-		// 	server.close();
-		// });
 	});
 	server.listen('listener.sock');
 };
