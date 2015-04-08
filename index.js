@@ -28,7 +28,15 @@ exports.start = function(customLoc){
 			module.exports.events.emit(currentStatus.event, currentStatus);
 		});
 	});
-	server.listen('listener.sock');
+	fs.exists('listener.sock', function(exists) {
+		if (exists) {
+			fs.unlinkSync('listener.sock');
+			server.listen('listener.sock');
+		}
+		else {
+			server.listen('listener.sock');
+		}
+	});
 };
 
 exports.playpause = function(){
