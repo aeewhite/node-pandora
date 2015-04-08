@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var net = require('net');
+var fs = require('fs');
 
 // How to Write to Stream
 //stream.write(whatever);
