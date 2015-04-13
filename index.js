@@ -14,12 +14,7 @@ exports.start = function(customLoc){
 	if(customLoc){
 		pianobarLocation = customLoc;
 	}
-	child_process.execFile(pianobarLocation,function(err, out, code){
-			if (err instanceof Error){
-				throw err;
-			}
-		}
-	);
+	var childPianobar = child_process.spawn(pianobarLocation);
 	// Event Handling
 	server = net.createServer(function(stream){
 		stream.on('data',function(input){
@@ -47,6 +42,7 @@ exports.next = function(){
 };
 exports.quit = function(){
 	writetoFiFo('q');
+	childPianobar.kill();
 	server.close();
 };
 exports.love = function(){
