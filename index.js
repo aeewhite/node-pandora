@@ -7,6 +7,7 @@ var server;
 var pianobarLocation = '/usr/local/bin/pianobar';
 var fifoLocation = process.env.HOME +'/.config/pianobar/ctl';
 var currentStatus;
+var childPianobar;
 
 module.exports.events = new EventEmitter();
 
@@ -14,7 +15,7 @@ exports.start = function(customLoc){
 	if(customLoc){
 		pianobarLocation = customLoc;
 	}
-	var childPianobar = child_process.spawn(pianobarLocation);
+	childPianobar = child_process.spawn(pianobarLocation);
 	// Event Handling
 	server = net.createServer(function(stream){
 		stream.on('data',function(input){
