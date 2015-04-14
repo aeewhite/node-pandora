@@ -7,8 +7,5 @@
     "pandora",
     "pianobar"
   ],
-  "author": "Andrew White",
-  "dependencies": {
-    "exec":"*"
-  }
+  "author": "Andrew White"
 }
