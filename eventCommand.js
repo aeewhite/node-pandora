@@ -5,30 +5,34 @@ var fs = require('fs');
 
 // How to Write to Stream
 //stream.write(whatever);
-fs.exists('listener.sock', function(exists) {
-	if (exists) {
-		var stream = net.connect('listener.sock',function(err){
-			if(err){
-				console.log('No Socket');
-			}
-			var eventname = process.argv[2];
-			var extraInfo;
 
-			process.stdin.on('readable', function() {
-				var chunk = process.stdin.read();
-				if (chunk !== null) {
-					extraInfo += chunk;
-				}
-				var eventObj = {
-					'event':eventname,
-					'info':extraInfo
-				};
+var eventname = process.argv[2];
+var extraInfo;
+var eventObj;
 
-				stream.write(JSON.stringify(eventObj));
-
-				stream.end();
-			});
-		});
+process.stdin.on('readable', function() {
+	var chunk = process.stdin.read();
+	if (chunk !== null) {
+		extraInfo += chunk;
 	}
+	eventObj = {
+		'event':eventname,
+		'info':extraInfo
+	};
+	writeToSocket(eventObj);
 });
 
+function writeToSocket(data){
+	fs.exists('listener.sock', function(exists) {
+		if (exists) {
+			var stream = net.connect('listener.sock',function(err){
+				if(err){
+					console.log('No Socket');
+				}	
+				stream.write(JSON.stringify(data),'',function(){
+					stream.end();
+				});
+			});
+		}
+	});	
+}
