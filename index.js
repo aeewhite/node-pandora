@@ -15,7 +15,7 @@ exports.start = function(customLoc){
 	if(customLoc){
 		pianobarLocation = customLoc;
 	}
-	childPianobar = child_process.spawn(pianobarLocation);
+	childPianobar = child_process.spawn(pianobarLocation,[],{stdio:'inherit'});
 	// Event Handling
 	server = net.createServer(function(stream){
 		stream.on('data',function(input){
