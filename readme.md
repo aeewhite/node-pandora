@@ -1,94 +1,111 @@
-#Node-Pandora
+# Node-Pandora
+
 This node module is a wrapper for interacting with the system installed pianobar client. 
 
-##Installation
+## Installation
+
 ```bash
 npm install --save aeewhite/node-pandora
 ```
 
-##Usage
+## Usage
+
 ```js
 var pandora = require('node-pandora');
 ```
-###Start
+### Start
+
 ```js
 pandora.start([commandlocation]);
 ```
 Starts the installed pianobar client. Will default to `/usr/local/bin/pianobar`. 
 
-###Play/Pause
+### Play/Pause
+
+
 ```js
 pandora.playpause();
 ```
 Toggles between playing and paused
 
-###Next
+### Next
+
 ```js
 pandora.next();
 ```
 Skips to the next song
 
-###Quit
+### Quit
+
 ```js
 pandora.quit();
 ```
 Stops the pianobar process
 
-###Bookmark
+### Bookmark
+
 ```js
 pandora.bookmark();
 ```
 Bookmark the current song
 
-###Love
+### Love
+
 ```js
 pandora.love();
 ```
 Love the currently playing song
 
-###Ban
+### Ban
+
 ```js
 pandora.ban();
 ```
 Ban the currently playing song, can only be removed using the Pandora web interface
 
-###Song Tired
+### Song Tired
+
 ```js
 pandora.songTired();
 ```
 Ban the current song for one month
 
-###Lower Volume
+### Lower Volume
+
 ```js
 pandora.volumeDown();
 ```
 Lower pianobar volume
 
-###Raise Volume
+### Raise Volume
+
 ```js
 pandora.volumeDown();
 ```
 Raise pianobar volume
 
-###Change Stations
+### Change Stations
+
 ```js
 pandora.setStation(stationIndex);
 ```
 Change station to the station at stationIndex (refer to the list provided by `getStatus()`)
 
-###Station Delete
+### Station Delete
+
 ```js
 pandora.deleteStation();
 ```
 Delete the currently playing station
 
-###Get Pianobar Status
+### Get Pianobar Status
+
 ```js
 pandora.getStatus();
 ```
 Returns an object of the most recent pianobar event with the following structure
 
-```JSON
+```js
 {
 	event: '',
 	artist: '',
@@ -117,21 +134,18 @@ Returns an object of the most recent pianobar event with the following structure
 
 The values for artist, title, album, and station names are escaped
 
-##Events
+## Events
+
 node-pandora provides an event emitter to listen to all events from pianobar. Events include `songstart`, `songfinish`, etc (full list can be found in [man pages for pianobar](http://manpages.ubuntu.com/manpages/maverick/man1/pianobar.1.html)). The status object provided by the event will be provided along with the event.
 
-####Example
+#### Example
 
 ```js
 pandora.events.on('songstart',function(status){
 	//Handle Event Here
-})
+});
 ```
 
 ##Note
 
 Remember to quit the pianobar process before exitting with `pandora.quit();`
-
-
-
- 
